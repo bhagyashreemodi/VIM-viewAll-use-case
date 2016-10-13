@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.ContextLoaderListener;
+
 import com.cg.dao.CarDAO;
 import com.cg.dao.impl.JDBCCarDAO;
 import com.cg.dto.CarDTO;
@@ -65,6 +68,7 @@ public class ControllerServlet extends HttpServlet
         {    
         	CarDAO carDao = new JDBCCarDAO();
         	request.setAttribute("carList", carDao.findAll());
+        	//System.out.println(new ContextLoaderListener().getCurrentWebApplicationContext().containsBean("message"));
         	destinationPage = "carList.jsp";
             //TODO 4 
 			//Use carDao to get the list of the cars

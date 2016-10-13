@@ -1,3 +1,7 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="javax.sql.*"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
+<%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="WEB-INF/showErrorMessage.jsp" %>
 
@@ -23,19 +27,24 @@
   
   <form name="deleteForm" method="post" action="controller">
   <input type="hidden" name="action" value="deleteCar" />
-  <table>    <tr>
+  <table>    <!-- <tr>
       <th><a href="javascript:checkAll(document.deleteForm.id)">Select All</a></th>
-      <th>Action</th>      <th>Make</th>      <th>Model</th>      <th class="model-year">Model Year</th>    </tr>        <c:forEach items='${carList}' var='car'>      <tr>
-      <td><input type="checkbox" name="id" value="<%-- Set this value to id property of car attribute --%>"></td>
-      <td><a href="controller?<%-- Set the value for 'action' parameter to 'editCar' and 'id' parameter to id property of car attribute --%>">Edit</a></td>      <td><%-- Set this value to make property of car attribute --%></td>      <td><%-- Set this value to model property of car attribute --%></td>      <td class="model-year"><%-- Set this value to modelYear property of car attribute --%></td>      </tr>    </c:forEach>
+      <th>Action</th>      <th>Make</th>      <th>Model</th>      <th class="model-year">Model Year</th>    </tr> -->    <%
     
-    <tr>
+    	WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(application);
+    	DataSource ds = (DataSource)ctx.getBean("ds");
+    	Connection conn = ds.getConnection();
+    	System.out.println((conn != null));
+    %>   <c:forEach items="${carList}" var="car">      <tr>
+      <td><input type="checkbox" name="id" value="${car.id }">${car.id }</td>
+      <td><a href="controller?action=editCar&id=${car.id }">Edit</a></td>      <td><c:out value="${car.make }"></c:out></td>      <td>${car.model }></td>      <td class="model-year">"${car.modelYear}"</td>      </tr>    </c:forEach>
+    <!-- <tr>
       <td colspan="5">
         <input type="submit" name="Delete Checked" value="Delete Checked" />
         &nbsp;&nbsp;
         <input type="reset" name="Reset" value="Reset" />
       </td>
-    </tr>
+    </tr> -->
       </table>
   </form></body>
 

@@ -3,6 +3,6 @@
 
 <body>
 
-<img alt="no image" src="<%=application.getContextPath()+"/images/ford-figo-2.jpg"%>">
+<img alt="no image" src="<%=application.getContextPath()+"/images/ford-figo-2.jpg"%>"/>
 </body>
 </html>

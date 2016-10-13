@@ -194,6 +194,7 @@ public class JDBCCarDAO implements CarDAO{
 				connection = dataSource.getConnection();
 				Statement selectStatement = connection.createStatement();
 				ResultSet result = selectStatement.executeQuery(selectQuery);
+				result.next();
 				while(result.next()){
 					CarDTO carDto = new CarDTO();
 					carDto.setId(result.getInt("ID"));

@@ -9,9 +9,9 @@
     <h1>JAW Motors</h1>
 
     <p>
+    <jsp:include page="showImage.jsp"></jsp:include>
 <%-- Use here JSP include directive to include "showImage.jsp" --%> 
 </p>
 	
-    <a href="controller?action=viewCarList"<%-- Set the value for 'action' parameter to 'viewCarList' --%>">View Inventory</a> 
-  </body>
+    <a href="controller?action=viewCarList">View Inventory</a>  </body>
 </html>
